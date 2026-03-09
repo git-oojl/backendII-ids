@@ -1,0 +1,41 @@
+{% extends "autos/base.html" %}
+
+{% block titulo %}Lista de autos{% endblock %}
+
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Autos registrados</h1>
+    <a href="{% url 'agregar_auto' %}" class="btn btn-success">Agregar auto</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        {% if autos %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Año</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for auto in autos %}
+                            <tr>
+                                <td>{{ auto.marca }}</td>
+                                <td>{{ auto.modelo }}</td>
+                                <td>{{ auto.anio }}</td>
+                                <td>${{ auto.precio }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="mb-0">No hay autos registrados todavía.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
